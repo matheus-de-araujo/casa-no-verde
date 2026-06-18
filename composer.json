@@ -1,8 +1,8 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/react-starter-kit",
+    "name": "laravel/casa-no-azul",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "Controle financeiro familiar Casa no Azul.",
     "keywords": [
         "laravel",
         "framework"
@@ -100,8 +100,7 @@
         "laravel": {
             "dont-discover": [],
             "installer": {
-                "post-create-project": [
-                ]
+                "post-create-project": []
             }
         }
     },

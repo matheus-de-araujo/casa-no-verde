@@ -12,6 +12,14 @@ declare module '@inertiajs/core' {
         sharedPageProps: {
             name: string;
             auth: Auth;
+            currentHousehold: {
+                id: number;
+                name: string;
+                slug: string;
+                monthly_income_goal: string | number;
+                monthly_expense_limit: string | number;
+                monthly_saving_goal: string | number;
+            } | null;
             sidebarOpen: boolean;
             [key: string]: unknown;
         };

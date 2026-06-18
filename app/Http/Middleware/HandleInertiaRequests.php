@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Household;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -35,12 +36,21 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $currentHousehold = $request->route('household');
+        $user = $request->user();
+
         return [
             ...parent::share($request),
             'name' => config('app.name'),
             'auth' => [
-                'user' => $request->user(),
+                'user' => $user,
+                'households' => $user?->households()
+                    ->select('households.id', 'households.name', 'households.slug')
+                    ->get() ?? [],
             ],
+            'currentHousehold' => $currentHousehold instanceof Household
+                ? $currentHousehold->only(['id', 'name', 'slug', 'monthly_income_goal', 'monthly_expense_limit', 'monthly_saving_goal'])
+                : null,
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];
     }

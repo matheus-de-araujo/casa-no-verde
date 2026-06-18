@@ -12,6 +12,11 @@ export type User = {
 
 export type Auth = {
     user: User;
+    households: {
+        id: number;
+        name: string;
+        slug: string;
+    }[];
 };
 
 /* @chisel-passkeys */
